@@ -12,7 +12,7 @@ export default function TaskList({ tasks, isLoading, onEdit, onDelete }) {
   if (tasks.length === 0) {
     return (
       <div className="state-panel">
-        <p className="state-panel__title">Aucune tâche ici.</p>
+        <p className="state-panel__title">Aucune tâche ici</p>
         <p>Créez-en une avec le bouton « Nouvelle tâche » pour commencer.</p>
       </div>
     );
