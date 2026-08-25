@@ -26,7 +26,6 @@ public class GlobalExceptionHandler {
         return buildResponse(HttpStatus.NOT_FOUND, ex.getMessage(), request, null);
     }
 
-    // --- 400 : requête invalide (métier) ---
     @ExceptionHandler(InvalidRequestException.class)
     public ResponseEntity<ErrorResponseDTO> handleInvalidRequest(
             InvalidRequestException ex, HttpServletRequest request) {
@@ -34,7 +33,6 @@ public class GlobalExceptionHandler {
         return buildResponse(HttpStatus.BAD_REQUEST, ex.getMessage(), request, null);
     }
 
-    // --- 400 : échec de validation des DTO (@Valid) ---
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ErrorResponseDTO> handleValidationErrors(
             MethodArgumentNotValidException ex, HttpServletRequest request) {
@@ -52,7 +50,6 @@ public class GlobalExceptionHandler {
                 request, errors);
     }
 
-    // --- 400 : paramètre d'URL avec un mauvais type (ex: ?status=INVALIDE) ---
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     public ResponseEntity<ErrorResponseDTO> handleTypeMismatch(
             MethodArgumentTypeMismatchException ex, HttpServletRequest request) {
@@ -62,7 +59,6 @@ public class GlobalExceptionHandler {
         return buildResponse(HttpStatus.BAD_REQUEST, message, request, null);
     }
 
-    // --- 400 : corps de requête JSON illisible ou malformé ---
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public ResponseEntity<ErrorResponseDTO> handleNotReadable(
             HttpMessageNotReadableException ex, HttpServletRequest request) {
@@ -71,7 +67,6 @@ public class GlobalExceptionHandler {
                 request, null);
     }
 
-    // --- 500 : toute autre erreur non prévue ---
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponseDTO> handleGenericException(
             Exception ex, HttpServletRequest request) {
